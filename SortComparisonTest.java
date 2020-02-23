@@ -1,5 +1,10 @@
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -90,11 +95,29 @@ public class SortComparisonTest
     /**
      *  Main Method.
      *  Use this main method to create the experiments needed to answer the experimental performance questions of this assignment.
+     * @throws FileNotFoundException 
      *
      */
-    public static void main(String[] args)
+    public static void main(String[] args) 
     {
-        
+    	double[] input = new double[10];
+    	int index = 0;
+    	BufferedReader reader;
+    	try{
+    		reader = new BufferedReader(new FileReader("/Users/conoroneill/Downloads/assignment input data files/numbers10.txt"));
+    		String line = reader.readLine();
+    		while(line != null && (index != 10)) {
+    			double number = Double.parseDouble(line);
+    			input[index] = number;
+    			index++;
+    			System.out.println(number);
+    			line = reader.readLine();
+    		}
+    		reader.close();
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    	
     }
 
 }
